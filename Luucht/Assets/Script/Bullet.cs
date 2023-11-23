@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         moveDirection = dir;
     }
 
-    private void OnDestroy()
+    private void Destroy()
     {
         gameObject.SetActive(false);
     }
