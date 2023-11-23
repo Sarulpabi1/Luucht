@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 7408471230988779896}
   - component: {fileID: 26794219785050697}
   - component: {fileID: 7151515892656947910}
+  - component: {fileID: 1470310670977223511}
+  - component: {fileID: 2427815488591248837}
+  - component: {fileID: 1365013561707956352}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -216,3 +219,44 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1470310670977223511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429275066027746443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8eed1b30e178634fa710d956bb665cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBullet: {fileID: 3205904420984209342, guid: 134603f5340159142b8bb5da00437843, type: 3}
+--- !u!114 &2427815488591248837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429275066027746443}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7e5280acfd00b41a2bf37d81ffd58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletsAmount: 10
+  startAngle: 0
+  endAngle: 360
+--- !u!114 &1365013561707956352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429275066027746443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea862beeb0c4ec4aa4b55386aa5d298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0

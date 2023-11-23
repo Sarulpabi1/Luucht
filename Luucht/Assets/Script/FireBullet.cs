@@ -25,8 +25,8 @@ public class FireBullet : MonoBehaviour
             float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
             float bulDirY = transform.position.x + Mathf.Cos((angle * Mathf.PI) / 180f);
 
-            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-            Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+            Vector2 bulMoveVector = new Vector2(bulDirX, bulDirY);
+            Vector2 bulDir = (bulMoveVector - (Vector2)transform.position).normalized;
 
             GameObject bul = BulletSpawner.bulletPoolInstance.GetBullet();
             bul.transform.position = transform.position;
