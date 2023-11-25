@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : PoolableBullet
 {
     private Vector2 moveDirection;
-    private float moveSpeed;
+    [SerializeField] private float moveSpeed = 5f;
+    private Rigidbody2D rb;
 
     private void OnEnable()
     {
-        Invoke("Destroy", 3f);
+        Invoke("bulletDestroy", 3f);
     }
 
-    private void Start()
-    {
-        moveSpeed = 5f;
-    }
+  //private void Start()
+  //{
+  //    moveSpeed = 5f;
+  //}
 
     private void Update()
     {
@@ -27,7 +29,7 @@ public class Bullet : MonoBehaviour
         moveDirection = dir;
     }
 
-    private void Destroy()
+    public override void bulletDestroy()
     {
         gameObject.SetActive(false);
     }
@@ -35,5 +37,21 @@ public class Bullet : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("dkdkkdkdkd");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Health healthComponent = collision.gameObject.GetComponent<Health>();
+
+            if (healthComponent != null)
+            {
+                healthComponent.takeDamage(1);
+            }
+            bulletDestroy();
+        }
+        
     }
 }

@@ -16,15 +16,15 @@ public class FirePattern2 : MonoBehaviour
     private void Fire()
     {
         float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-        float bulDirY = transform.position.x + Mathf.Cos((angle * Mathf.PI) / 180f);
+        float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
 
         Vector2 bulMoveVector = new Vector2(bulDirX, bulDirY);
         Vector2 bulDir = (bulMoveVector - (Vector2)transform.position).normalized;
 
-        GameObject bul = BulletSpawner.bulletPoolInstance.GetBullet();
+        PoolableBullet bul = BulletPool.bulletPoolInstance.GetBullet();
         bul.transform.position = transform.position;
         bul.transform.rotation = transform.rotation;
-        bul.SetActive(true);
+        bul.gameObject.SetActive(true);
         bul.GetComponent<Bullet>().setMoveDirection(bulDir);
 
         angle += 10f;
