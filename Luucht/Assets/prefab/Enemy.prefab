@@ -10,16 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 425894587157484835}
   - component: {fileID: 7408471230988779896}
-  - component: {fileID: 26794219785050697}
   - component: {fileID: 7151515892656947910}
   - component: {fileID: 2176169255561942634}
   - component: {fileID: 4445398921646262953}
   - component: {fileID: 1365013561707956352}
   - component: {fileID: 5840528919195259898}
   - component: {fileID: 3128878472882679018}
+  - component: {fileID: 8009894831498224846}
   m_Layer: 0
-  m_Name: Triangle
-  m_TagString: Player
+  m_Name: Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,13 +32,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429275066027746443}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!212 &7408471230988779896
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91,109 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &26794219785050697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429275066027746443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686271c1113ec6a41a8a0aaa70c96ab2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 7151515892656947910}
-  moveSpeed: 5
-  playerControl:
-    m_Name: Player Control
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a722af0d-8ca5-4dd1-b54e-340318587653
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: ZQSD
-      m_Id: 72c9f244-cb6c-437e-93c7-868c24d4b725
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 3c83a512-1135-49fe-a57d-b7aeca30684c
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 518cadd9-b9b0-48f7-bf27-d7071980ff3d
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 3d7e37ed-7f2b-46ee-ad5d-99287e8e8beb
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    - m_Name: right
-      m_Id: e7024e3d-11ba-429f-8213-4e57b396b5c3
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    - m_Name: Directionnal Arrows
-      m_Id: df37736f-06de-4471-8e41-04284868eb1f
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 2703a22f-4214-4e96-a997-82299e87f602
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 53c2aeb2-b4ec-41e8-875a-b49732cf04d0
-      m_Path: <Keyboard>/downArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 7d7f7539-42dc-496d-9e5a-100d040400e2
-      m_Path: <Keyboard>/leftArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    - m_Name: right
-      m_Id: dac6395d-ea6f-4ce4-8212-efdc8670ca3b
-      m_Path: <Keyboard>/rightArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Control
-      m_Flags: 8
-    m_Flags: 0
 --- !u!50 &7151515892656947910
 Rigidbody2D:
   serializedVersion: 4
@@ -204,7 +101,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1429275066027746443}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -228,7 +125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429275066027746443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f7e5280acfd00b41a2bf37d81ffd58a, type: 3}
   m_Name: 
@@ -311,3 +208,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!114 &8009894831498224846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429275066027746443}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbae442a88f675d47bfb62edd24f7416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 6694212327736407445, guid: 334c076e37346d4409e0f884470ea7f8, type: 3}
+  - {fileID: 8459798835747778159, guid: 3ba82ac65c10b114fa011b21b048b179, type: 3}
+  - {fileID: 7609933168928282305, guid: d3e48c9f2ae5b674eb6cc1406043b452, type: 3}
+  - {fileID: 8527006766067822410, guid: 8e6db809f9c6e024cb0dbe22c8cb9c02, type: 3}
+  movementSpeed: 5

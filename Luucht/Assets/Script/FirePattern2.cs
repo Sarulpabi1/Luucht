@@ -13,7 +13,7 @@ public class FirePattern2 : MonoBehaviour
         InvokeRepeating("Fire", 0f, 0.2f);
     }
 
-    private void Fire()
+    public void Fire()
     {
         float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
         float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);

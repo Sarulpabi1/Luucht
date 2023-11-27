@@ -8,10 +8,12 @@ public abstract class PoolableBullet : MonoBehaviour
 {
     public abstract void bulletDestroy();
 }
+
 public class BulletPool : MonoBehaviour
 {
     public static BulletPool bulletPoolInstance;
 
+    public PoolableBullet poolableBullet2;
     public PoolableBullet pooledBullet;
     public int pooledAmount;
     public bool willGrow;
