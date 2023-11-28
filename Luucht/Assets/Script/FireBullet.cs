@@ -15,9 +15,9 @@ public class FireBullet : MonoBehaviour
         InvokeRepeating("Fire", 0f, 2f);
     }
 
-    private void Fire()
+    public void Fire()
     {
-        float angleStep = (endAngle - startAngle) / bulletsAmount;
+        float angleStep = (endAngle - startAngle) / bulletsAmount; 
         float angle = startAngle;
 
         for (int i = 0; i < bulletsAmount; i++)

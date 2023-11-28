@@ -41,7 +41,6 @@ public class Bullet : PoolableBullet
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("dkdkkdkdkd");
         if (collision.gameObject.CompareTag("Player"))
         {
             Health healthComponent = collision.gameObject.GetComponent<Health>();
@@ -52,6 +51,17 @@ public class Bullet : PoolableBullet
             }
             bulletDestroy();
         }
-        
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Health healthComponent = collision.gameObject.GetComponent<Health>();
+
+            if (healthComponent != null)
+            {
+                healthComponent.takeDamage(1);
+            }
+            bulletDestroy();
+        }
+
     }
 }
