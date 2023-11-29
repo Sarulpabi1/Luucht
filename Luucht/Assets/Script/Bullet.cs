@@ -52,16 +52,16 @@ public class Bullet : PoolableBullet
             bulletDestroy();
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Health healthComponent = collision.gameObject.GetComponent<Health>();
-
-            if (healthComponent != null)
-            {
-                healthComponent.takeDamage(1);
-            }
-            bulletDestroy();
-        }
+      //if (collision.gameObject.CompareTag("Enemy"))
+      //{
+      //    Health healthComponent = collision.gameObject.GetComponent<Health>();
+      //
+      //    if (healthComponent != null)
+      //    {
+      //        healthComponent.takeDamage(1);
+      //    }
+      //    bulletDestroy();
+      //}
 
     }
 }

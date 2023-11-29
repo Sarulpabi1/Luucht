@@ -12,7 +12,7 @@ public class FireBullet : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("Fire", 0f, 2f);
+        InvokeRepeating("Fire", 2f, 2f);
     }
 
     public void Fire()
