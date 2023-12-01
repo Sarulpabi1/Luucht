@@ -1,47 +1,72 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.Timeline;
+
+[System.Serializable]
+public class AttackParameters
+{
+    public int numberOfColumns;
+    public float speed;
+    public float lifetime;
+    public float fireRate;
+    public float size;
+    public float spinSpeed;
+}
+
+
 
 public class ParticleSpawner : MonoBehaviour
 {
-    public int nb_of_columns;
-    public float speed;
-    public Sprite texture;
-    public Color color;
-    public float lifetime;
-    public float firerate;
-    public float size;
-    private float angle;
-    public Material material;
-    public float spin_speed;
-    public float time;
+    [Header("Attack Settings")]
+    [SerializeField] public int numberOfColumns;
+    [SerializeField] public float speed;
+    [SerializeField] public Sprite texture;
+    [SerializeField] public Color color;
+    [SerializeField] public float lifetime;
+    [SerializeField] public float fireRate;
+    [SerializeField] public float size;
+    [SerializeField] public Material material;
+    [SerializeField] public float spinSpeed;
+    private float time;
+
+    public AttackParameters attack1Params;
+    public AttackParameters attack2Params;
+    public AttackParameters attack3Params;
 
 
     public ParticleSystem system;
+    
 
+    private float angle;
 
     private void Awake()
     {
-        Summon();
+        
+        
+
     }
+
 
     private void FixedUpdate()
     {
-        time += Time.fixedDeltaTime;
-        transform.rotation = Quaternion.Euler(0,0,time * spin_speed);
+
+        time += Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, 0, time * spinSpeed);
     }
+
+    
     void Summon()
     {
-        angle = 360f / nb_of_columns;
-        for (int i = 0; i < nb_of_columns; i++)
+        
+        angle = 360f / numberOfColumns;
+        for (int i = 0; i < numberOfColumns; i++)
         {
-            // A simple particle material with no texture.
             Material particleMaterial = material;
 
-            // Create a green Particle System.
             var go = new GameObject("Particle System");
-            go.transform.Rotate(angle * i, 90, 0); // Rotate so the system emits upwards.
+            go.transform.Rotate(angle * i, 90, 0);
             go.transform.parent = this.transform;
             go.transform.position = this.transform.position;
             system = go.AddComponent<ParticleSystem>();
@@ -51,7 +76,8 @@ public class ParticleSpawner : MonoBehaviour
             mainModule.startSize = 0.5f;
             mainModule.startSpeed = speed;
             mainModule.maxParticles = 1000000;
-            //mainModule.duration = 0f;
+            mainModule.stopAction = ParticleSystemStopAction.Destroy;
+
             mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
 
             var emission = system.emission;
@@ -67,24 +93,135 @@ public class ParticleSpawner : MonoBehaviour
             text.AddSprite(texture);
             text.enabled = true;
         }
-        // Every 2 secs we will emit.
-        InvokeRepeating("DoEmit", 0f, firerate);
+        InvokeRepeating("DoEmit", 0f, fireRate);
+        
     }
 
+    
     void DoEmit()
     {
+        
         foreach (Transform child in transform)
         {
             system = child.GetComponent<ParticleSystem>();
-            // Any parameters we assign in emitParams will override the current system's when we call Emit.
-            // Here we will override the start color and size.
+          
             var emitParams = new ParticleSystem.EmitParams();
             emitParams.startColor = color;
             emitParams.startSize = size;
             emitParams.startLifetime = lifetime;
             system.Emit(emitParams, 10);
+        }
+    }
+
+    public void ResetValues()
+    {
+        // Réinitialisation des valeurs par défaut
+        numberOfColumns = 0;
+        speed = 0f;
+        lifetime = 0f;
+        fireRate = 0f;
+        size = 0f;
+        spinSpeed = 0f;
+    }
+
+    private void SetAttackParameters(AttackParameters parameters)
+    {
+        numberOfColumns = parameters.numberOfColumns;
+        speed = parameters.speed;
+        lifetime = parameters.lifetime;
+        fireRate = parameters.fireRate;
+        size = parameters.size;
+        spinSpeed = parameters.spinSpeed;
+
+        angle = 360f / numberOfColumns;
+    }
+    public void Attack1()
+    {
+
+        AttackParameters attack1Params = new AttackParameters
+        {
+            numberOfColumns = 16,
+            speed = 5f,
+            lifetime = 5f,
+            fireRate = 0.3f,
+            size = 1f,
+            spinSpeed = 10f
+        };
+        SetAttackParameters(attack1Params);
+
+    }
+
+    public void Attack2()
+    {
+
+        AttackParameters attack2Params = new AttackParameters
+        {
+            numberOfColumns = 16,
+            speed = 8f,
+            lifetime = 5f,
+            fireRate = 0.5f,
+            size = 1f,
+            spinSpeed = 250f
+        };
+        SetAttackParameters(attack2Params);
+
+    }
+
+    public void Attack3()
+    {
+
+        AttackParameters attack3Params = new AttackParameters
+        {
+            numberOfColumns = 24,
+            speed = 5f,
+            lifetime = 5f,
+            fireRate = 1f,
+            size = 1f,
+            spinSpeed = 250f
+        };
+        SetAttackParameters(attack3Params);
+
+    }
+
+    void DestroyChildren()
+    {
+        
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
             
         }
     }
+
+    
+
+    public void RandomAttackPattern()
+    {
+        DestroyChildren();
+        int patternIndex = Random.Range(1, 3);
+        switch (patternIndex)
+        {
+            case 1:
+                Attack1();
+                Summon();
+                break;
+        
+            case 2: 
+                Attack2();
+                Summon();
+                break;
+
+            case 3: 
+                Attack3();
+                Summon();
+                break;
+            default:
+                Debug.Log("NoPattern");
+                break;
+        }
+        
+    }
 }
+
+ 
 
