@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class FirePattern3 : MonoBehaviour
 {
-    [SerializeField] private float angle = 0f; 
+    [SerializeField] private float angle = 0f;
+    [SerializeField] private int numberOfBranches = 3;
     private Vector2 bulletMoveDirection;
 
     private void Start()
@@ -13,12 +14,14 @@ public class FirePattern3 : MonoBehaviour
         InvokeRepeating("Fire", 0f, 0.2f);
     }
 
-    private void Fire()
-    {
-        for (int i = 0; i <= 1; i++)
+    private void Fire2 ()
+    { 
+        for (int i = 0; i < numberOfBranches; i++)
         {
-            float bulDirX = transform.position.x + Mathf.Sin(((angle + 180f * i) * Mathf.PI) / 180f);
-            float bulDirY = transform.position.y + Mathf.Cos(((angle + 180f * i) * Mathf.PI) / 180f);
+            float currentAngle = angle + (360f / numberOfBranches) * i; 
+
+            float bulDirX = transform.position.x + Mathf.Sin((currentAngle * Mathf.PI) / 180f);
+            float bulDirY = transform.position.y + Mathf.Cos((currentAngle * Mathf.PI) / 180f);
 
             Vector2 bulMoveVector = new Vector2(bulDirX, bulDirY);
             Vector2 bulDir = (bulMoveVector - (Vector2)transform.position).normalized;
@@ -27,9 +30,8 @@ public class FirePattern3 : MonoBehaviour
             bul.transform.position = transform.position;
             bul.transform.rotation = transform.rotation;
             bul.gameObject.SetActive(true);
-            bul.GetComponent<Bullet>().setMoveDirection(bulDir);  
+            bul.GetComponent<Bullet>().setMoveDirection(bulDir);
         }
-
         angle += 10f;
 
         if (angle >= 180f) 
@@ -37,4 +39,6 @@ public class FirePattern3 : MonoBehaviour
             angle = 0f;
         }
     }
+
+
 }

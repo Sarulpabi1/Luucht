@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7408471230988779896}
   - component: {fileID: 7151515892656947910}
   - component: {fileID: 3128878472882679018}
-  - component: {fileID: 7157424350824608986}
   - component: {fileID: 2250323852594877584}
-  - component: {fileID: 5797596415587707528}
+  - component: {fileID: 5319104800848301335}
+  - component: {fileID: 4259615166386374449}
+  - component: {fileID: 5589106507769306796}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -32,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
@@ -151,19 +152,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
---- !u!114 &7157424350824608986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429275066027746443}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea862beeb0c4ec4aa4b55386aa5d298, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angle: 0
 --- !u!114 &2250323852594877584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,10 +164,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7e5280acfd00b41a2bf37d81ffd58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletsAmount: 10
+  bulletsAmount: 40
   startAngle: 0
   endAngle: 360
---- !u!114 &5797596415587707528
+  rotationSpeed: 250
+  numberOfBranches: 20
+--- !u!320 &5319104800848301335
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429275066027746443}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 9dcbf453d75f9f24cb4c3418cb29983d, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -2970475741359161695, guid: 9dcbf453d75f9f24cb4c3418cb29983d, type: 2}
+    value: {fileID: 4259615166386374449}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &4259615166386374449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,10 +197,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 1429275066027746443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aaf6a5dc907e724b809a27844687f8e, type: 3}
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  petals: 24
-  bulletsPerPetals: 20
-  petalRadius: 10
-  rotationSpeed: 60
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 467b565365d2a8642ac16104dbd8350f, type: 2}
+    - {fileID: 11400000, guid: e60f764bd855abe4cb675fa29960cee9, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2250323852594877584}
+          m_TargetAssemblyTypeName: FireBullet, Assembly-CSharp
+          m_MethodName: AttackRandom
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2250323852594877584}
+          m_TargetAssemblyTypeName: FireBullet, Assembly-CSharp
+          m_MethodName: Fire
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5589106507769306796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429275066027746443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250b2986ff17acc4f992a0d48609c4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 3000
