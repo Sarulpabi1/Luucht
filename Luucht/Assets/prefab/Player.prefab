@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2327293076991508046}
   - component: {fileID: 7587167374559239003}
   - component: {fileID: 7353927851199314977}
+  - component: {fileID: 7788807611614353983}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -33,8 +34,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4052647179079612370}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4174041023771591274
@@ -137,7 +137,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.1
 --- !u!50 &7587167374559239003
 Rigidbody2D:
   serializedVersion: 4
@@ -228,50 +228,18 @@ MonoBehaviour:
       m_Action: Player Control
       m_Flags: 8
     m_Flags: 0
---- !u!1 &4389675632010314516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4052647179079612370}
-  - component: {fileID: 5951466615335504398}
-  m_Layer: 0
-  m_Name: Shooter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4052647179079612370
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4389675632010314516}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2704143035708095684}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5951466615335504398
+--- !u!114 &7788807611614353983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4389675632010314516}
+  m_GameObject: {fileID: 2779528798642013755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7e5280acfd00b41a2bf37d81ffd58a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ea862beeb0c4ec4aa4b55386aa5d298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletsAmount: 10
   startAngle: 0
-  endAngle: 360
+  rotationSpeed: 10

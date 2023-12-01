@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void entityDestroy(GameObject gameObject)
     {
         gameObject.SetActive(false);
@@ -22,6 +27,10 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             entityDestroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Invoke("QuitGame", 3f);
         }
     }
+
+
 }

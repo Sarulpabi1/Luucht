@@ -11,7 +11,7 @@ public class Bullet : PoolableBullet
 
     private void OnEnable()
     {
-        Invoke("bulletDestroy", 3f);
+        Invoke("bulletDestroy", 8f);
     }
 
   //private void Start()
@@ -51,17 +51,6 @@ public class Bullet : PoolableBullet
             }
             bulletDestroy();
         }
-
-      //if (collision.gameObject.CompareTag("Enemy"))
-      //{
-      //    Health healthComponent = collision.gameObject.GetComponent<Health>();
-      //
-      //    if (healthComponent != null)
-      //    {
-      //        healthComponent.takeDamage(1);
-      //    }
-      //    bulletDestroy();
-      //}
 
     }
 }

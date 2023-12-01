@@ -2,17 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletType2 : MonoBehaviour
+public class BulletType2 : PoolableBullet2
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector2 moveDirection;
+    [SerializeField] private float moveSpeed = 5f;
+    private Rigidbody2D rb;
+
+    private void OnEnable()
     {
-        
+        Invoke("bulletDestroy2", 8f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+    }
+
+    public void setMoveDirectionPlayer(Vector2 dir)
+    {
+        moveDirection = dir;
+    }
+
+    public override void bulletDestroy2()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Health healthComponent = collision.gameObject.GetComponent<Health>();
+
+            if (healthComponent != null)
+            {
+                healthComponent.takeDamage(1);
+            }
+            bulletDestroy2();
+        }
+
     }
 }
